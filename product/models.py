@@ -4,30 +4,6 @@ from django.conf import settings
 from PIL import Image
 import os
 
-
-'''
-Produto:
-        Produto:
-            nome - Char
-            descricao_curta - Text
-            descricao_longa - Text
-            imagem - Image
-            slug - Slug
-            preco_marketing - Float
-            preco_marketing_promocional - Float
-            tipo - Choices
-                ('V', 'Variável'),
-                ('S', 'Simples'),
-
-        Variacao:
-            nome - char
-            produto - FK Produto
-            preco - Float
-            preco_promocional - Float
-            estoque - Int
-'''
-
-
 class Product(models.Model):
 	name = models.CharField(max_length=255)
 	short_descripion = models.TextField(max_length=255)
