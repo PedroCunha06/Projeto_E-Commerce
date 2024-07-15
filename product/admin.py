@@ -1,8 +1,15 @@
 from django.contrib import admin
-from product.models import Product
+from product.models import Product, Variation
 
-@admin.register(Product)    # Usa o decorator para registrar o model
+class VariationInline(admin.TabularInline):
+    model = Variation
+    extra = 1
+
+
 class ProductAdmin(admin.ModelAdmin):
+    inlines = [
+        VariationInline
+    ]
     list_display = 'id', 'name', 'marketing_price'    # Mostrar name no display
     ordering = '-id', # Ordernar por Id decrescente
     search_fields = 'name', 'id',  # Campo de pesquisa
@@ -10,3 +17,5 @@ class ProductAdmin(admin.ModelAdmin):
     list_max_show_all = 100 # Itens máximo a se mostrar na tela
     list_editable = 'marketing_price',   # Permite ter tópicos editáveis
     list_display_links = 'name',   # O que está como editable, não pode estar aqui
+    
+admin.site.register(Product, ProductAdmin)  # Registra o model no admin
