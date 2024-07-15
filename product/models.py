@@ -75,3 +75,14 @@ class Product(models.Model):
 	def __str__(self):
 		return self.name
 
+
+class Variation(models.Model):
+	name = models.CharField(max_length=50, blank=True, null=True)
+	product = models.ForeignKey(Product, on_delete=models.CASCADE)	# Modo cascata
+	price = models.FloatField()
+	promocional_price = models.FloatField(default=0)
+	stock = models.PositiveIntegerField(default=1)
+
+
+	def __str__(self):
+		return self.name or self.product.name	# Mostra nome ou nome do produto ligado
