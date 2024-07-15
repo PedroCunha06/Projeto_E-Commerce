@@ -1,4 +1,4 @@
-#!/Users/pedrocunha/Codigos_Pedro/Python/ProjetoECommerce2/venv/bin/python3.12
+#!/Users/pedrocunha/Codigos_Pedro/Python/ProjetoECommerce/venv/bin/python3.12
 # -*- coding: utf-8 -*-
 import re
 import sys
