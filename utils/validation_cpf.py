@@ -1,6 +1,6 @@
 import re
 
-def valida_cpf(cpf):
+def validation_cpf(cpf):
     cpf = str(cpf)
     
     if not cpf or len(cpf) != 11:
@@ -40,9 +40,3 @@ def valida_cpf(cpf):
     if new_cpf == cpf:
         return True
         
-while True:
-    cpf = input('Manda ...')
-    teste = valida_cpf(cpf)
-    print(teste)
-    if teste:
-        break

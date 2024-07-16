@@ -1,9 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.forms import ValidationError
 
 import re
 
-from utils import validation_cpf
+from utils.validation_cpf import validation_cpf
 
 class ProfileUser(models.Model):
     class Meta:
@@ -16,7 +17,7 @@ class ProfileUser(models.Model):
     cpf = models.CharField(max_length=11, help_text='Just numbers.')
     address = models.CharField(max_length=50)
     number = models.CharField(max_length=5)
-    complement = models.CharField(max_length=30)
+    complement = models.CharField(max_length=30, blank=True)
     neightborhood = models.CharField(max_length=30)
     cep = models.CharField(max_length=8, help_text='Just numbers.')
     city = models.CharField(max_length=30)
@@ -58,7 +59,17 @@ class ProfileUser(models.Model):
         return f'{self.user.first_name} {self.user.last_name}'
     
     def clean(self):
-        ...
+        error_message = {}
+        
+        if not validation_cpf(self.cpf):
+            error_message['cpf'] = 'Enter a valid CPF'
+            
+        if re.search(r'[^0-9]', self.cep) or len(self.cep) != 8:
+            error_message['cep'] = 'Enter a valid CEP'
+            
+        if error_message:
+            raise ValidationError(error_message)
+            
     
     
     
