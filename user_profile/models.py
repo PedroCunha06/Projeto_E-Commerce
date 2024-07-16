@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+import re
+
+from utils import validation_cpf
+
 class ProfileUser(models.Model):
     class Meta:
         verbose_name = 'ProfileUser'   # O que mostrar quando houver uma categoria
@@ -54,7 +58,7 @@ class ProfileUser(models.Model):
         return f'{self.user.first_name} {self.user.last_name}'
     
     def clean(self):
-        pass
+        ...
     
     
     
