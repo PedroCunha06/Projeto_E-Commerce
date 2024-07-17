@@ -23,6 +23,16 @@ class Product(models.Model):
 			)
 		)
 
+	def formatted_marketing_price(self):
+		return f'R$ {self.marketing_price:,.2f}'.replace(',', 'X').replace('.', ',').replace('X', '.')
+
+	def formatted_promotional_price(self):
+		return f'R$ {self.promocional_marketing_price:,.2f}'.replace(',', 'X').replace('.', ',').replace('X', '.')
+
+	formatted_marketing_price.short_description = 'Price'
+	formatted_promotional_price.short_description = 'Promotional Price'
+ 
+ 
 	# Função de Redimensionamento de imagem.
 	@staticmethod
 	def resize_image(img, new_width=800):
