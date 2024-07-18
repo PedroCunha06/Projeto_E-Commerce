@@ -4,6 +4,7 @@ from django.db import models
 from django.utils.text import slugify
 from PIL import Image
 import os
+from utils.format import format_price
 
 
 class Product(models.Model):
@@ -24,10 +25,10 @@ class Product(models.Model):
 		)
 
 	def formatted_marketing_price(self):
-		return f'R$ {self.marketing_price:,.2f}'.replace(',', 'X').replace('.', ',').replace('X', '.')
+		return format_price(self.marketing_price)
 
 	def formatted_promotional_price(self):
-		return f'R$ {self.promocional_marketing_price:,.2f}'.replace(',', 'X').replace('.', ',').replace('X', '.')
+		return format_price(self.promocional_marketing_price)
 
 	formatted_marketing_price.short_description = 'Price'
 	formatted_promotional_price.short_description = 'Promotional Price'
