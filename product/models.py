@@ -8,7 +8,7 @@ import os
 
 class Product(models.Model):
 	name = models.CharField(max_length=255)
-	short_descripion = models.TextField(max_length=255)
+	short_description = models.TextField(max_length=255)
 	long_description = models.TextField()
 	image = models.ImageField(upload_to='pictures/%Y/%m', blank=True, null=True)
 	slug = models.SlugField(unique=True, blank=True, null=True)
