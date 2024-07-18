@@ -75,7 +75,7 @@ class Variation(models.Model):
 	name = models.CharField(max_length=50, blank=True, null=True)
 	product = models.ForeignKey(Product, on_delete=models.CASCADE)	# Modo cascata
 	price = models.FloatField()
-	promocional_price = models.FloatField(default=0)
+	promocional_price = models.FloatField(default=0, blank=True,)
 	stock = models.PositiveIntegerField(default=1)
 
 
